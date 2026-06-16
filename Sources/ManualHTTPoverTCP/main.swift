@@ -107,6 +107,6 @@ while let line = readLine(strippingNewline: true) {
 }
 
 // EOF, close connect
-try! channel.close().wait()
+try? channel.close().wait()
 
 print("ManualHttpOverTCP closed")

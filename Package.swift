@@ -9,7 +9,7 @@ let package = Package(
 		.macOS(.v26)
 	],
 	products: [
-		.executable(name: "swift-httpovertcp", targets: ["ManualHTTPoverTCP"])
+		.executable(name: "ManualHTTPoverTCP", targets: ["ManualHTTPoverTCP"])
 	],
 	dependencies: [
 		.package(url: "https://github.com/apple/swift-nio.git", from: "2.0.0")
