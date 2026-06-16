@@ -54,45 +54,47 @@ Since the server does not (anymore) support HTTP, only HTTPS, you will see the 3
 You can pass another server, port and and path to access something else:
 
 ```
-> swift run ManualHTTPoverTCP www.oulu.fi 80 /
+> swift run ManualHTTPoverTCP www.example.com 80 /
+[1/1] Planning build
 Building for debugging...
 [7/7] Applying ManualHTTPoverTCP
-Build of product 'ManualHTTPoverTCP' complete! (1.84s)
+Build of product 'ManualHTTPoverTCP' complete! (1.85s)
 Starting ManualHttpOverTCP...
-Connected to server: [IPv4]130.231.10.10/130.231.10.10:80.
+Connected to server: [IPv4]172.66.147.243/172.66.147.243:80.
  Press ^D to exit.
 Writing buffer: 
 GET / HTTP/1.1
-Host: www.oulu.fi
+Host: www.example.com
 User-Agent: ManualHTTPoverTCPDemo/0.0.1
 Accept: */*
 
 Wrote buffer to channel.
 Press enter to exit app
-HTTP/1.1 302 Found
-Date: Tue, 16 Jun 2026 08:23:15 GMT
-Server: Apache/2.4.6 (Red Hat Enterprise Linux) OpenSSL/1.0.2k-fips mod_perl/2.0.11 Perl/v5.16.3
-Location: https://www.oulu.fi/
-Content-Length: 204
-Content-Type: text/html; charset=iso-8859-1
+HTTP/1.1 200 OK
+Date: Tue, 16 Jun 2026 08:40:08 GMT
+Content-Type: text/html
+Transfer-Encoding: chunked
+Connection: keep-alive
+Server: cloudflare
+Last-Modified: Tue, 09 Jun 2026 21:01:00 GMT
+Allow: GET, HEAD
+Accept-Ranges: bytes
+Age: 7532
+cf-cache-status: HIT
+CF-RAY: a0c8820c4fd8c7da-TLL
 
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<html><head>
-<title>302 Found</title>
-</head><body>
-<h1>Found</h1>
-<p>The document has moved <a href="https://www.oulu.fi/">here</a>.</p>
-</body></html>
+22f
+<!doctype html><html lang="en"><head><title>Example Domain</title><link rel="icon" href="data:,"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{background:#eee;width:60vw;margin:15vh auto;font-family:system-ui,sans-serif}h1{font-size:1.5em}div{opacity:0.8}a:link,a:visited{color:#348}</style></head><body><div><h1>Example Domain</h1><p>This domain is for use in documentation examples without needing permission. Avoid use in operations.</p><p><a href="https://iana.org/domains/example">Learn more</a></p></div></body></html>
 ```
 
 As you can see, you can also use `swift run ... ` to launch the app, recompiling if needed. Here:
 
 1. `ManualHTTPoverTCP` is the app name to launch.
-1. First parameter `weather.willab.fi` is the host name to connect to.
+1. First parameter `www.example.com` is the host name to connect to.
 1. Second parameter is the port number (`80`) to connect with TCP (default port for HTTP).
-1. Third parameter `/weather.xml` is the request path sent to the server with HTTP GET.
+1. Third parameter `/` is the request path sent to the server with HTTP GET.
 
-You can use the app to try to connect to other servers than weather.willab.fi. Note that this app does not support HTTPS, it only uses TCP, not TLS/SSL, so you cannot use it with HTTPS servers.
+You can use the app to try to send a HTTP GET to other servers / paths than weather.willab.fi. Note that this app does not support HTTPS, it only uses TCP, not TLS/SSL, so you cannot use it with HTTPS servers.
 
 ## Dependencies
 
