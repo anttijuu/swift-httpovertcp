@@ -7,11 +7,12 @@
 //
 
 import Foundation
-import NIO
+import NIOCore
+import NIOPosix
 
 print("Starting ManualHttpOverTCP...")
 
-private final class ManualHttpOverTCPHandler: ChannelInboundHandler {
+private final class ManualHttpOverTCPHandler: ChannelInboundHandler, Sendable {
    public typealias InboundIn = ByteBuffer
    public typealias OutboundOut = ByteBuffer
    
@@ -81,7 +82,7 @@ let channel = try { () -> Channel in
 print("Connected to server: \(channel.remoteAddress!).\n Press ^D to exit.")
 
 var requestBuffer = channel.allocator.buffer(capacity: 1024)
-let requestTemplate = "GET %@ HTTP/1.1\r\nHost: %@\r\nUser-Agent: SwiftApp/0.0.1\r\nAccept: */*\r\n\r\n"
+let requestTemplate = "GET %@ HTTP/1.1\r\nHost: %@\r\nUser-Agent: ManualHTTPoverTCPDemo/0.0.1\r\nAccept: */*\r\n\r\n"
 var request = ""
 switch (connectTarget) {
 case .ip(let host, _, let path):
